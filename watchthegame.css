@@ -82,5 +82,11 @@ body {
 
     .signup-button {
         font-size: 0.9em;
-        padding
+        padding: 8px 16px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+}
 
