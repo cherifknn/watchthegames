@@ -43,10 +43,9 @@ body {
 
 .center-map {
     width: 90%;
-    height: 50vw;
-    max-height: 480px;
+    height: 480px;
     border: none;
-    margin: 20px;
+    margin: 5px;
 }
 
 .footer-text {
@@ -84,5 +83,10 @@ body {
     .signup-button {
         font-size: 0.9em;
         padding: 8px 16px;
+    }
+
+    .center-map {
+        width: 100%;
+        height: 300px;
     }
 }
