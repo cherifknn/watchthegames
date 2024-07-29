@@ -6,9 +6,11 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 document.getElementById('google-signin').addEventListener('click', async () => {
+  console.log('Sign-in button clicked');
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
+      redirectTo: 'https://cherifknn.github.io/watchthegames/auth.html',
       queryParams: {
         access_type: 'offline',
         prompt: 'consent',
@@ -18,6 +20,9 @@ document.getElementById('google-signin').addEventListener('click', async () => {
 
   if (error) {
     console.error('Error signing in with Google:', error.message);
+    alert('Error signing in: ' + error.message);
+  } else {
+    console.log('Sign-in successful', data);
   }
 });
 
@@ -48,3 +53,6 @@ supabase.auth.onAuthStateChange(async (event, session) => {
     // Show sign-in form or message
   }
 });
+
+
+
