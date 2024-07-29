@@ -15,8 +15,20 @@ document.getElementById('google-signin').addEventListener('click', async () => {
 // Listen to auth state changes
 supabase.auth.onAuthStateChange((event, session) => {
   if (session) {
-    console.log('User signed in:', session.user);
-    // Redirect or show authenticated content
+    const user = session.user;
+    const userMetadata = user.user_metadata;
+
+    // Check if user has a Google Workspace account
+    const isGoogleWorkspace = userMetadata && userMetadata.email_verified;
+
+    if (!isGoogleWorkspace) {
+      alert('Only users with Google Workspace accounts can sign up.');
+      supabase.auth.signOut();
+    } else {
+      console.log('User signed in:', user);
+      // Redirect to the success page after successful sign-in
+      window.location.href ='loggedin.html'; // Redirect to the "You're in!" page
+    }
   } else {
     console.log('User signed out');
     // Show sign-in form or message
